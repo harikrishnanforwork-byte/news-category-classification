@@ -6,6 +6,7 @@ import unicodedata
 import pandas as pd
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.neural_network import MLPClassifier
@@ -75,3 +76,8 @@ def predict(request: PredictionRequest):
             for index in ranked[1:]
         ],
     }
+
+
+frontend_dist = PROJECT_DIR / "frontend" / "dist"
+if frontend_dist.exists():
+    app.mount("/", StaticFiles(directory=frontend_dist, html=True), name="frontend")

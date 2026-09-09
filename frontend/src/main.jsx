@@ -3,7 +3,7 @@ import { Activity, ArrowUpRight, BarChart3, Check, ChevronRight, FileText, Gauge
 import { createRoot } from "react-dom/client";
 import "./styles.css";
 
-const API_URL = "http://127.0.0.1:8000";
+const API_URL = import.meta.env.VITE_API_URL || "";
 const categories = [
   { name: "World", color: "#4f83ff", icon: Globe2 },
   { name: "Sports", color: "#13a87b", icon: Activity },
